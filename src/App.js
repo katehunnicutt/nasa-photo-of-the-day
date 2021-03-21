@@ -3,7 +3,11 @@ import "./App.css";
 import axios from 'axios'
 import {API_KEY, BASE_URL} from './index'
 import Description from "./components/Description";
+import Photo from "./components/dailyPhoto";
+import Photographer from "./components/photographer";
+import Title from "./components/title"
 import styled from "styled-components";
+
 
 //styled components are built outside of the component they are styling
 //Capitalize style components
@@ -11,7 +15,7 @@ import styled from "styled-components";
 const StyledApp = styled.div`
 
   background-color: ${pr => pr.theme.primaryColor};
-  color: ${pr => pr.theme.darkestColor};
+  color: ${pr => pr.theme.lightestColor};
   padding:1%;
   `
 
@@ -21,7 +25,7 @@ const [nasaData, setNasaData] = useState([])
   useEffect(()=>{
 
     axios
-    .get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)
+    .get(`${BASE_URL}api_key=${API_KEY}`)
     .then((res)=>{
       setNasaData(res.data);
       console.log(res.data);
@@ -36,10 +40,12 @@ const [nasaData, setNasaData] = useState([])
      <div className="App">
      <StyledApp className = 'AM'>
       <h1>Nasa Photo of the Day</h1>
-       <p>
-     <Description descriptionProp = {nasaData.explanation} img={nasaData.hdurl}/>
+      <p>
+     <Photo dailyPhoto = {nasaData.url} />
+     <Title title = {nasaData.title} />
+     <Photographer photoTaker = {nasaData.copyright}/>
+     <Description descriptionProp = {nasaData.explanation}/>
      </p>
-     <button>Learn More</button>
 
      </StyledApp>
      </div>
