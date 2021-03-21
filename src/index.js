@@ -10,6 +10,7 @@ export const API_KEY = '0h9CYsDQZjBnBgh3ZyLO4CntIuuDrGeVe2c6hvgB'
 ReactDOM.render(<App />, document.getElementById("root"));
 
 ReactDOM.render(
+    //one time
     <ThemeProvider theme = {theme}><App/></ThemeProvider>,
     document.querySelector('#root')
 )
